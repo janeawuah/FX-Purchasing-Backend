@@ -4,20 +4,20 @@ from config import Base
 
 
 
-class currency(Base):
+class Currency(Base):
     __tablename__ = 'currency'
     
     id=Column(Integer,primary_key=True)
-    name=Column
+    name=Column(String)
     
 
-class ExchangeRates(Base):
+class ExchangeRate(Base):
     __tablename__ = 'exchange_rates'
     
     id=Column(Integer,primary_key=True)
-    source_currency=Column(str,ForeignKey("currency.name",ondelete="CASCADE"))
-    target_currency=Column(str,ForeignKey("currency.name",ondelete="CASCADE"))
-    date=Column(datetime)
+    source_currency=Column(String,ForeignKey("currency.name",ondelete="CASCADE"))
+    target_currency=Column(String,ForeignKey("currency.name",ondelete="CASCADE"))
+    date=Column(String)
 
 class Trader(Base):
     __tablename__ = 'trader'
@@ -27,14 +27,14 @@ class Trader(Base):
     email=Column(String)
     phone_number=Column(String)
     
-class Order(Base):
-    __tablename__ = 'order'
+class Trade(Base):
+    __tablename__ = 'trade'
     
     id=Column(Integer,primary_key=True)
-    customer_id=Column(Integer,ForeignKey("customer.id", ondelete="CASCADE"))
-    book_id=Column(Integer, ForeignKey("book.id", ondelete="CASCADE"))
-    quantity=Column(Integer)
-    price=Column(Integer)
+    trader=Column(Integer,ForeignKey("trader.id", ondelete="CASCADE"))
+    exchange_rate= Column(Integer,ForeignKey("exchange_rates.id",ondelete="CASCADE"))
+    source_total=Column(Integer)
+    target_total=Column(Integer)
     
     
 class Account(Base):
@@ -43,6 +43,5 @@ class Account(Base):
     id=Column(Integer,primary_key=True)
     account_balance=Column(Integer)
     currency=Column(String)
-    customer_id=Column(Integer, ForeignKey("customer.id", ondelete="CASCADE"))
-    
+    trader_id=Column(Integer, ForeignKey("trader.id", ondelete="CASCADE"))
     
