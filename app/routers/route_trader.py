@@ -8,7 +8,9 @@ trade_router = APIRouter()
 
 
 def get_db():
+    print("connecting to db")
     db = SessionLocal()
+    print("connected to db")
     try:
         yield db
     finally:

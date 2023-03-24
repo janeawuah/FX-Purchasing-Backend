@@ -17,12 +17,11 @@ class CurrencySchema(BaseModel):
 class RequestCurrency(BaseModel):
     parameter: CurrencySchema = Field(...)
     
-
-    
+ 
 class ExchangeRateSchema(BaseModel):
     id: Optional[int] = None
-    source_currency: Optional[str] = None
-    target_currency: Optional[str] = None
+    source_currency: Optional[int] = None
+    target_currency: Optional[int] = None
     date: Optional[str] = None
 
     class Config:
@@ -57,20 +56,6 @@ class TradeSchema(BaseModel):
         
 class RequestTrade(BaseModel):
     parameter: TradeSchema = Field(...)
-    
-    
-class AccountSchema(BaseModel):
-    id: Optional[int] = None
-    customer_id: Optional[int] = None
-    book_id:Optional[str]=None
-    quantity: Optional[str] = None
-    price:Optional[int]=None
-
-    class Config:
-        orm_mode = True
-        
-class RequestAccount(BaseModel):
-    parameter: AccountSchema = Field(...)
     
 class AccountSchema(BaseModel):
     id: Optional[int] = None

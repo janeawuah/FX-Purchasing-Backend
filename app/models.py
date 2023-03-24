@@ -23,8 +23,8 @@ class ExchangeRate(Base):
     __tablename__ = 'exchange_rates'
     
     id=Column(Integer,primary_key=True)
-    source_currency=Column(String,ForeignKey("currency.name",ondelete="CASCADE"))
-    target_currency=Column(String,ForeignKey("currency.name",ondelete="CASCADE"))
+    source_currency=Column(Integer,ForeignKey("currency.id",ondelete="CASCADE"))
+    target_currency=Column(Integer,ForeignKey("currency.id",ondelete="CASCADE"))
     date=Column(String)
     
 class Trade(Base):
