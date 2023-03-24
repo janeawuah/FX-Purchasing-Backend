@@ -3,7 +3,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
 
-DATABASE_URL = "postgresql://localhost/fastapi"
+DATABASE_URL = "postgresql://localhost/fx"
 
 engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(bind = engine, autocommit= False, autoflush= False)

@@ -3,7 +3,15 @@ from sqlalchemy import Column,Integer, String,ForeignKey
 from config import Base
 
 
-
+class Trader(Base):
+    __tablename__ = 'trader'
+    
+    id=Column(Integer,primary_key=True)
+    name=Column(String)
+    email=Column(String)
+    phone_number=Column(String)
+    
+    
 class Currency(Base):
     __tablename__ = 'currency'
     
@@ -18,14 +26,6 @@ class ExchangeRate(Base):
     source_currency=Column(String,ForeignKey("currency.name",ondelete="CASCADE"))
     target_currency=Column(String,ForeignKey("currency.name",ondelete="CASCADE"))
     date=Column(String)
-
-class Trader(Base):
-    __tablename__ = 'trader'
-    
-    id=Column(Integer,primary_key=True)
-    name=Column(String)
-    email=Column(String)
-    phone_number=Column(String)
     
 class Trade(Base):
     __tablename__ = 'trade'
