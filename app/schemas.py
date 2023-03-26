@@ -22,7 +22,7 @@ class ExchangeRateSchema(BaseModel):
     id: Optional[int] = None
     source_currency: Optional[int] = None
     target_currency: Optional[int] = None
-    date: Optional[str] = None
+    rate: Optional[int] = None
 
     class Config:
         orm_mode = True
