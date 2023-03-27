@@ -13,7 +13,7 @@ def get_trader_by_email(db: Session, trader_email: str):
     return db.query(Trader).filter(Trader.email == trader_email).first()
 
 def create_trader(db: Session, trader:TraderSchema):
-    _trader= Trader(name=trader.name,email=trader.email, phone_number = trader.phone_number)
+    _trader= Trader(full_name=trader.full_name,email=trader.email, disabled = trader.disabled)
     db.add(_trader)
     db.commit()
     db.refresh(_trader)
@@ -24,11 +24,11 @@ def remove_trader(db: Session, trader_id: int):
     db.delete(_trader)
     db.commit()
 
-def update_trader_details(db: Session, trader_id: int, name: str, email: str, phone_number: str):
+def update_trader_details(db: Session, trader_id: int, full_name: str, email: str, disabled: bool):
     _trader= get_trader_by_id(db=db, trader_id=trader_id)
-    _trader.name = name
+    _trader.full_name = full_name
     _trader.email = email
-    _trader.phone_number = phone_number
+    _trader.disabled = disabled
     db.commit()
     db.refresh(_trader)
     return _trader

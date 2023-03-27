@@ -6,9 +6,9 @@ class Trader(Base):
     __tablename__ = 'trader'
     
     id=Column(Integer,primary_key=True)
-    name=Column(String)
+    username=Column(String)
+    full_name=Column(String)
     email=Column(String)
-    phone_number=Column(String)
     
     
 class Trade(Base):

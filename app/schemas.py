@@ -1,16 +1,15 @@
 import datetime
-from typing import List, Optional, Generic, TypeVar
+from typing import List, Optional, Generic, TypeVar, Union
 from pydantic import BaseModel , Field
 from pydantic.generics import GenericModel
 
 T = TypeVar('T')
 
-
 class TraderSchema(BaseModel):
     id: Optional[int] = None
-    name: Optional[str] = None
+    full_name: Optional[str] = None
     email: Optional[str] = None
-    phone_number: Optional[str] = None
+    disabled: Union[bool, None] = None
 
     class Config:
         orm_mode = True
